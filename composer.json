@@ -1,5 +1,5 @@
 {
-  "name": "paragonie/eloquent-ciphersweet",
+  "name": "paragonie-jelaucv/eloquent-ciphersweet",
   "description": "Provides searchable encrypted columns for Eloquent ORM",
   "license": "ISC",
   "authors": [
