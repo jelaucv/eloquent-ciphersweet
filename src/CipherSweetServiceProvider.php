@@ -32,6 +32,11 @@ final class CipherSweetServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/ciphersweet.php' => config_path('ciphersweet.php'),
         ]);
+
+        // Publish your migrations
+        $this->publishes([
+            __DIR__.'/database/migrations/' => database_path('/migrations')
+        ], 'migrations');
     }
 
     /**
@@ -71,9 +76,9 @@ final class CipherSweetServiceProvider extends ServiceProvider
             case 'custom':
                 return $this->buildCustomKeyProvider();
             case 'file':
-                return new FileProvider(config('ciphersweet.file.path'));
+                return new FileProvider(config('ciphersweet.providers.file.path'));
             case 'string':
-                return new StringProvider(config('ciphersweet.string.key'));
+                return new StringProvider(config('ciphersweet.providers.string.key'));
             case 'random':
             default:
                 return new RandomProvider($backend);
@@ -85,7 +90,7 @@ final class CipherSweetServiceProvider extends ServiceProvider
      */
     protected function buildCustomKeyProvider(): KeyProviderInterface
     {
-        $factory = app(config('ciphersweet.custom.via'));
+        $factory = app(config('ciphersweet.providers.custom.via'));
 
         return $factory();
     }

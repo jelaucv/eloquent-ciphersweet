@@ -1,26 +1,14 @@
 <?php
 
-namespace ParagonIE\EloquentCipherSweet;
+
+namespace ParagonIE\EloquentCipherSweet\Observers;
+
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-final class ModelObserver
+class EncryptingObserver
 {
-    /**
-     * @param Model|CipherSweet $model
-     * @throws \SodiumException
-     */
-    public function deleting(Model $model)
-    {
-        if ($types = $model::getBlindIndexTypes()) {
-            DB::table('blind_indexes')
-                ->whereIn('type', $types)
-                ->where('foreign_id', $model->getKey())
-                ->delete();
-        }
-    }
-
     /**
      * @param Model|CipherSweet $model
      * @throws \ParagonIE\CipherSweet\Exception\CryptoOperationException
@@ -28,7 +16,7 @@ final class ModelObserver
      */
     public function retrieved(Model $model)
     {
-        $model->decryptRow();
+        $model->setRawAttributes($model->cipherSweet()->decryptRow($this->getAttributes()), true);
     }
 
     /**
@@ -39,6 +27,6 @@ final class ModelObserver
      */
     public function saving(Model $model)
     {
-        $model->encryptRow();
+        $model->setRawAttributes($model->cipherSweet()->encryptRow($this->getAttributes()));
     }
 }
