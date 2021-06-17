@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use ParagonIE\EloquentCipherSweet\HasSweetIndexes;
 
-class IndexingObserver
+class
+IndexingObserver
 {
     /**
      * @param Model|\ParagonIE\EloquentCipherSweet\HasSweetIndexes $model
      */
     public function created(Model $model)
     {
-        DB::table('blind_indexes')->insert(
+        DB::table('blind_indexes')->insertOrIgnore(
             array_map(
                 function ($row) use ($model) { $row['foreign_id'] = $model->getKey(); return $row; },
                 $model->cipherSweet()->getAllBlindIndexes($model->toArray()))
@@ -46,7 +47,7 @@ class IndexingObserver
             ->where('foreign_id', $model->getKey())
             ->delete();
 
-        DB::table('blind_indexes')->insert(
+        DB::table('blind_indexes')->insertOrIgnore(
             array_map(
                 function ($row) use ($model) { $row['foreign_id'] = $model->getKey(); return $row; },
                 $blinds
