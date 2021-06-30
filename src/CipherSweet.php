@@ -41,11 +41,11 @@ trait CipherSweet
                 app(CipherSweetEngine::class),
                 (new static)->getTable()
             );
-        }
-        
-        $model = new static;
-        if (isset($model->cipherSweetIndexes)) {
-            static::configureCipherSweetIndexes($model->cipherSweet(), $model->cipherSweetIndexes);
+            
+            $model = new static;
+            if (isset($model->cipherSweetIndexes)) {
+                static::configureCipherSweetIndexes($cipherSweetEncryptedRow, $model->cipherSweetIndexes);
+            }
         }
 
         return $cipherSweetEncryptedRow;
