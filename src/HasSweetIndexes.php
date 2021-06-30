@@ -67,10 +67,6 @@ trait HasSweetIndexes
     protected static function bootHasSweetIndexes()
     {
         static::observe(IndexingObserver::class);
-
-        $model = new static;
-
-        static::configureCipherSweetIndexes($model->cipherSweet(), $model->cipherSweetIndexes ?? []);
     }
 
     /**
