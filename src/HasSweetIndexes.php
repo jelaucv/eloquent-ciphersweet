@@ -37,7 +37,7 @@ trait HasSweetIndexes
     {
         return $query->whereExists(function (Builder $query) use ($indexName, $value): Builder {
             /** @var CipherSweetEngine $engine */
-            $engine = app(CipherSweetEngine::class);
+            $engine = $this->cipherSweet();
             $table = $this->getTable();
 
             $column = static::$indexToField[$indexName];
