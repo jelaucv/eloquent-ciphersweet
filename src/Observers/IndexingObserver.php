@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use ParagonIE\EloquentCipherSweet\HasSweetIndexes;
 
-class
-IndexingObserver
+class IndexingObserver
 {
     /**
      * @param Model|\ParagonIE\EloquentCipherSweet\HasSweetIndexes $model
@@ -60,7 +59,7 @@ IndexingObserver
      */
     public function deleting(Model $model)
     {
-        $blinds = $model->cipherSweet()->getAllBlindIndexes($dirty);
+        $blinds = $model->cipherSweet()->getAllBlindIndexes($model->toArray());
         if (!$blinds) {
             return;
         }
