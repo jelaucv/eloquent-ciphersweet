@@ -10,16 +10,16 @@
   ],
   "require": {
     "php": "^7|^8",
-    "illuminate/config": "^10",
-    "illuminate/console": "^10",
-    "illuminate/database": "^10",
-    "illuminate/support": "^10",
+    "illuminate/config": "^11",
+    "illuminate/console": "^11",
+    "illuminate/database": "^11",
+    "illuminate/support": "^11",
     "paragonie/ciphersweet": "^2.0",
     "psr/container": "^1.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^10",
-    "vimeo/psalm": "^3"
+    "phpunit/phpunit": "^11",
+    "vimeo/psalm": "^6.15.1"
   },
   "autoload": {
     "psr-4": {
