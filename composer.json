@@ -10,10 +10,10 @@
   ],
   "require": {
     "php": "^7|^8",
-    "illuminate/config": "^11",
-    "illuminate/console": "^11",
-    "illuminate/database": "^11",
-    "illuminate/support": "^11",
+    "illuminate/config": "^12",
+    "illuminate/console": "^12",
+    "illuminate/database": "^12",
+    "illuminate/support": "^12",
     "paragonie/ciphersweet": "^2.0",
     "psr/container": "^1.0"
   },
